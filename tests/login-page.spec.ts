@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LoginPage } from '../pages/login-page';
 
 test.describe('Login Page Testing', () => {
@@ -9,7 +9,7 @@ test.describe('Login Page Testing', () => {
         await loginPage.goto();
     });
 
-    test('@smoke should display page title and description correctly', async ({ page }) => {
+    test('@smoke should display page title and description correctly', async() => {
         await loginPage.waitForLoginToLoad();
     });
 });

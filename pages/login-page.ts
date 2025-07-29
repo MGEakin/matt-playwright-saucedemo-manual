@@ -1,8 +1,8 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import { BasePage } from "./shared";
 
 /**
- * Page Object for the login List page
+ * Page Object for the login page
  * Handles all interactions and element selectors for the login listing
  */
 export class LoginPage extends BasePage {
@@ -15,9 +15,9 @@ export class LoginPage extends BasePage {
         super(page, '/login');
 
         // Initialize Login elements
-        this.username = page.locator('#user-name');
-        this.password = page.locator('#password');
-        this.loginButton = page.locator('#login-button');
+        this.username = page.locator('[id="user-name"]');
+        this.password = page.locator('[id="password"]');
+        this.loginButton = page.locator('[id="login-button"]');
     }
 
     /**
@@ -25,13 +25,15 @@ export class LoginPage extends BasePage {
      */
     async goto(): Promise<void> {
         await this.page.goto('https://www.saucedemo.com/v1/');
-        await this.waitForLoginToLoad();
+        // await this.waitForLoginToLoad();
     }
 
     /**
      * Wait for the login list to fully load
      */
     async waitForLoginToLoad(timeout: number = 15000): Promise<void> {
+        await this.goto();
+
         // Wait for page to load
         await this.page.waitForLoadState('domcontentloaded');
 
